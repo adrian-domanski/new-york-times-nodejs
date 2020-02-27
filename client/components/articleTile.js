@@ -1,39 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { getNYTArticleId } from "../helpers/helpers";
+import React from "react";
+import Link from "next/link";
 
 const ArticleTile = ({ article }) => {
-  const [articleImg, setArticleImg] = useState("");
-
-  useEffect(() => {
-    if (article.media.length) {
-      const [img] = article.media;
-      if (img.type === "image") {
-        setArticleImg({
-          alt: img.caption,
-          src: img["media-metadata"][img["media-metadata"].length - 1].url
-        });
-      }
-    }
-  }, []);
-
-  if (!articleImg) return null;
-
   return (
-    <Link
-      to={`/app/article/${getNYTArticleId(article.uri)}`}
-      className="link-reset"
-      state={article}>
-      <div className="article-tile">
-        <img
-          src={articleImg.src}
-          alt={articleImg.alt}
-          className="article-tile__img"
-        />
-        <div className="article-tile-content">
-          <h1 className="article-tile__title">{article.title}</h1>
-          <p className="article-tile__byline">{article.byline}</p>
+    <Link href={`/article/[id]`} as={`/article/${article.id}`}>
+      <a className="link-reset">
+        <div className="article-tile">
+          <img
+            src={article.imageUrl}
+            alt={article.title}
+            className="article-tile__img"
+          />
+          <div className="article-tile-content">
+            <h1 className="article-tile__title">{article.title}</h1>
+            <p className="article-tile__byline">{article.byLine}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

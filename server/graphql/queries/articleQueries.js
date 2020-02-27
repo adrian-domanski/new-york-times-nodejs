@@ -9,7 +9,6 @@ const articles = {
       const { data } = await axios.get(
         "https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=8KZZUTBaIxt20npBsa0Jxi48fqXI6Syk"
       );
-
       const formattedArr = data.results
         .map(article => {
           if (

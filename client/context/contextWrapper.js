@@ -8,14 +8,25 @@ import { AuthContext } from "./authContext";
 const ContextWrapper = ({ children, contextData }) => {
   const { dispatch: articleDispatch } = useContext(ArticleContext);
   const { dispatch: authDispatch } = useContext(AuthContext);
-  const { data } = useQuery(getArticlesQuery);
+  const { refetch: getArticles } = useQuery(getArticlesQuery, { skip: true });
   const { refetch: authUser } = useQuery(authUserQuery, { skip: true });
 
+  // Get all articles
   useEffect(() => {
     const fetchData = async () => {
-      // Get all articles
-      articleDispatch({ type: "GET_ARTICLES", payload: data.articles });
-      // Check if local storage has token and try to auth
+      try {
+        const { data } = await getArticles();
+        articleDispatch({ type: "GET_ARTICLES", payload: data.articles });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Check if local storage has token and try to auth
+  useEffect(() => {
+    const fetchData = async () => {
       if (localStorage.getItem("token")) {
         try {
           const { data } = await authUser({
@@ -24,7 +35,7 @@ const ContextWrapper = ({ children, contextData }) => {
 
           authDispatch({ type: "AUTH_SUCCESS", payload: data.authUser });
         } catch (err) {
-          console.log(err);
+          console.log(`Initial auth error: ${err}`);
         }
       }
     };

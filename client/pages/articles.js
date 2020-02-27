@@ -4,7 +4,10 @@ import ArticleTile from "../components/articleTile";
 import Layout from "../components/layout";
 
 const Articles = () => {
-  const { articles } = useContext(ArticleContext);
+  const {
+    articleContext: { articles }
+  } = useContext(ArticleContext);
+  console.log(articles);
   const articlesList = articles.length ? (
     <div className="articles-grid">
       {articles.map(article => (

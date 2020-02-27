@@ -6,7 +6,7 @@ import { AuthContext } from "../context/authContext";
 import Link from "next/link";
 import { ArticleContext } from "../context/articleContext";
 
-const Index = props => {
+const Index = () => {
   const { isAuth } = useContext(AuthContext);
   const {
     articleContext: { articles }
