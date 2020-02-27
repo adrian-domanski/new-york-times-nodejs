@@ -1,0 +1,54 @@
+.home-page {
+  // - - - - - -
+  // Home Page
+  // - - - - - -
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(300px, 60vh) 1fr;
+  .home-page-baner {
+    position: relative;
+    height: 100%;
+  }
+
+  .baner-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-page-baner__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .baner-content__title {
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.918);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+  }
+
+  // Home page info section
+  .home-page-info__title {
+    text-align: center;
+  }
+
+  .home-page-info__link {
+    color: rgb(0, 113, 219);
+  }
+
+  .home-page-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+}

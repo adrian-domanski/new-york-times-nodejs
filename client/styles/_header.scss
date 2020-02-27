@@ -1,0 +1,135 @@
+.l-header {
+  // - - - -
+  // Navbar
+  // - - - -
+  .nav {
+    height: 100%;
+    width: 100%;
+    background-color: darken($themeColor, 20%);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.404);
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-transform: uppercase;
+  }
+
+  .nav-list__item:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  .nav-list__item-link {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.404);
+    font-style: 1rem;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    padding: 0.4rem 0;
+    position: relative;
+    &:after {
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      width: 110%;
+      left: -5%;
+      position: absolute;
+      background: #fff;
+      transition: transform 0.1s ease 0s;
+      transform: scaleX(0);
+    }
+
+    &:hover:after {
+      transform: scaleX(1);
+    }
+
+    &.active-link:after {
+      transform: scaleX(1);
+    }
+  }
+
+  .nav-toggler {
+    display: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav {
+      position: relative;
+    }
+
+    .nav-list {
+      position: absolute;
+      top: 100%;
+      z-index: 100;
+      left: 0;
+      width: 100%;
+      background-color: darken($themeColor, 10%);
+      flex-direction: column;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.15s ease;
+
+      &.mobile-active {
+        transform: scaleY(1);
+      }
+    }
+
+    .nav-list__item:not(:last-child) {
+      margin-right: 0;
+    }
+
+    .nav-list__item {
+      width: 100%;
+    }
+
+    .nav-list__item-link {
+      padding: 1rem 0;
+      font-size: 1.4rem;
+      text-align: center;
+      display: block;
+
+      &:after {
+        transform: scaleX(0);
+      }
+
+      &:hover:after {
+        transform: scaleX(0);
+      }
+
+      &.active-link:after {
+        transform: scaleX(0);
+      }
+
+      &.active-link {
+        font-weight: bold;
+      }
+    }
+
+    .nav-toggler {
+      display: block;
+      font-size: 2rem;
+      position: absolute;
+      right: 1rem;
+      padding: 1rem;
+      cursor: pointer;
+    }
+  }
+}

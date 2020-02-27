@@ -1,0 +1,49 @@
+// Montserrat font
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap&subset=latin-ext");
+
+@import "./var";
+@import "./global";
+
+@import "./header";
+@import "./footer";
+@import "./home";
+@import "./login";
+@import "./articles";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: $font;
+}
+
+.l-page-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 70px 1fr 60px;
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  html {
+    font-size: 16px;
+  }
+}
