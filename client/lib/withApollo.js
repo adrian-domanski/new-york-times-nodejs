@@ -7,8 +7,9 @@ export default withApollo(
     const dev = process.env.NODE_ENV !== "production";
     console.log(dev);
     return new ApolloClient({
-      uri: "https://my-nyt-articles.herokuapp.com/graphql",
-      // ? "http://localhost:5000/graphql"
+      uri: dev
+        ? "http://localhost:5000/graphql"
+        : "https://my-nyt-articles.herokuapp.com/graphql",
       cache: new InMemoryCache().restore(initialState || {})
     });
   },
