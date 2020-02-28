@@ -1,20 +1,28 @@
 {
-  "name": "next-articles",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "heroku-postbuild": "npm install --prefix server && npm install --prefix client"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adrian-domanski/next-js-articles.git"
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client --prefix ../client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run export --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/adrian-domanski/next-js-articles/issues"
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.2"
   },
-  "homepage": "https://github.com/adrian-domanski/next-js-articles#readme"
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }
