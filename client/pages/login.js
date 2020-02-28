@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Layout from "../components/layout";
 import { useQuery } from "@apollo/react-hooks";
 import { loginQuery } from "../queries/authQueries";
 import { AuthContext } from "../context/authContext";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState("john@gmail.com");
@@ -11,7 +12,21 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [alert, setAlert] = useState("");
   const { refetch: login } = useQuery(loginQuery, { skip: true });
-  const { authContext, dispatch: authDispatch } = useContext(AuthContext);
+  const [alertTimeOut, setAlertTimeOut] = useState();
+  const {
+    authContext: { isAuth },
+    dispatch: authDispatch
+  } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuth) {
+      router.push("/articles");
+    }
+  }, [isAuth]);
+
+  // Clear timeout after unmount
+  useEffect(() => clearTimeout(alertTimeOut));
 
   const handleValidateEmail = email => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,9 +50,11 @@ const Login = () => {
     setAlert(msg);
 
     // Clear alert
-    setTimeout(() => {
-      setAlert("");
-    }, 5000);
+    setAlertTimeOut(
+      setTimeout(() => {
+        setAlert("");
+      }, 5000)
+    );
   };
 
   const handleChange = ({ target: { value, name } }) => {

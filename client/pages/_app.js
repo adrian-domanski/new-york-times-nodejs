@@ -14,7 +14,7 @@ class MyApp extends App {
       <AuthContextProvider>
         <ArticleContextProvider>
           <ContextWrapper contextData={this.props.contextData}>
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
           </ContextWrapper>
         </ArticleContextProvider>
       </AuthContextProvider>

@@ -1,25 +1,27 @@
-import React, { useEffect, useState, useContext } from "react"
-import { ArticleContext } from "../context/articleContext"
-import ArticleTile from "./articleTile"
+import React, { useEffect, useState, useContext } from "react";
+import { ArticleContext } from "../context/articleContext";
+import ArticleTile from "./articleTile";
 
 const ArticlesRow = ({ rowTitle = "Other articles", alreadyUsedArticle }) => {
-  const [otherArticles, setOtherArticles] = useState([])
-  const { articles } = useContext(ArticleContext)
+  const [otherArticles, setOtherArticles] = useState([]);
+  const {
+    articleContext: { articles }
+  } = useContext(ArticleContext);
   useEffect(() => {
     if (articles.length) {
-      let tempArr = []
+      let tempArr = [];
       while (tempArr.length < 3) {
-        const random = Math.floor(Math.random() * articles.length)
+        const random = Math.floor(Math.random() * articles.length);
         if (
           !tempArr.includes(articles[random]) &&
           (articles[random] !== alreadyUsedArticle || !alreadyUsedArticle)
         ) {
-          tempArr.push(articles[random])
+          tempArr.push(articles[random]);
         }
       }
-      setOtherArticles(tempArr)
+      setOtherArticles(tempArr);
     }
-  }, [articles, alreadyUsedArticle])
+  }, [articles, alreadyUsedArticle]);
 
   return (
     <section className="other-articles">
@@ -30,7 +32,7 @@ const ArticlesRow = ({ rowTitle = "Other articles", alreadyUsedArticle }) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ArticlesRow
+export default ArticlesRow;

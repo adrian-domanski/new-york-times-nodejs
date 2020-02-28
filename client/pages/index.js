@@ -5,15 +5,21 @@ import banerImg from "../images/baner.jpg";
 import { AuthContext } from "../context/authContext";
 import Link from "next/link";
 import { ArticleContext } from "../context/articleContext";
+import Head from "next/head";
 
 const Index = () => {
-  const { isAuth } = useContext(AuthContext);
+  const {
+    authContext: { isAuth }
+  } = useContext(AuthContext);
   const {
     articleContext: { articles }
   } = useContext(ArticleContext);
 
   return (
     <Layout>
+      <Head>
+        <title>NYT Articles | Home</title>
+      </Head>
       <div className="home-page">
         <div className="home-page-baner">
           <img src={banerImg} className="home-page-baner__img" />
@@ -24,13 +30,17 @@ const Index = () => {
           </div>
         </div>
         <section className="home-page-info container">
-          <h1 className="home-page-info__title">
-            To see all available articles please{" "}
-            <Link href="/login">
-              <a className="home-page-info__link">Log In</a>
-            </Link>
-            !
-          </h1>
+          {isAuth ? (
+            <ArticlesRow rowTitle="Recent articles" />
+          ) : (
+            <h1 className="home-page-info__title">
+              To see all available articles please{" "}
+              <Link href="/login">
+                <a className="home-page-info__link">Log In</a>
+              </Link>
+              !
+            </h1>
+          )}
         </section>
       </div>
     </Layout>

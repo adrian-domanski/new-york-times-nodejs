@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Layout from "../components/layout";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { registerMutation } from "../queries/authQueries";
 import { AuthContext } from "../context/authContext";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -10,8 +11,22 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [alert, setAlert] = useState("");
+  const [alertTimeOut, setAlertTimeOut] = useState();
   const [register] = useMutation(registerMutation);
-  const { authContext, dispatch: authDispatch } = useContext(AuthContext);
+  const {
+    authContext: { isAuth },
+    dispatch: authDispatch
+  } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuth) {
+      router.push("/articles");
+    }
+  }, [isAuth]);
+
+  // Clear timeout after unmount
+  useEffect(() => clearTimeout(alertTimeOut));
 
   const handleValidateEmail = email => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -26,7 +41,6 @@ const Register = () => {
     if (password.length < 3) {
       return setPasswordError("Password must have at least 3 chars");
     }
-
     // No error
     setPasswordError("");
   };
@@ -35,9 +49,11 @@ const Register = () => {
     setAlert(msg);
 
     // Clear alert
-    setTimeout(() => {
-      setAlert("");
-    }, 5000);
+    setAlertTimeOut(
+      setTimeout(() => {
+        setAlert("");
+      }, 5000)
+    );
   };
 
   const handleChange = ({ target: { value, name } }) => {
