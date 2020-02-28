@@ -4,8 +4,12 @@ import { ApolloProvider } from "@apollo/react-hooks";
 
 export default withApollo(
   ({ initialState }) => {
+    const dev = process.env.NODE_ENV !== "development";
+    console.log(dev);
     return new ApolloClient({
-      uri: "http://localhost:5000/graphql",
+      uri: dev
+        ? "http://localhost:5000/graphql"
+        : "https://my-nyt-articles.herokuapp.com/graphql",
       cache: new InMemoryCache().restore(initialState || {})
     });
   },

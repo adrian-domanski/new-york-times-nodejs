@@ -390,8 +390,10 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_1___default()(({
   initialState
 }) => {
+  const dev = false;
+  console.log(dev);
   return new apollo_boost__WEBPACK_IMPORTED_MODULE_2___default.a({
-    uri: "http://localhost:5000/graphql",
+    uri: dev ? "http://localhost:5000/graphql" : "https://my-nyt-articles.herokuapp.com/graphql",
     cache: new apollo_boost__WEBPACK_IMPORTED_MODULE_2__["InMemoryCache"]().restore(initialState || {})
   });
 }, {
@@ -403,13 +405,13 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
       client: props.apollo,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 15
+        lineNumber: 19
       },
       __self: undefined
     }, __jsx(Page, _extends({}, props, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 20
       },
       __self: undefined
     })));

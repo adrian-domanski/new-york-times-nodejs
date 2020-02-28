@@ -376,8 +376,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 /* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_2___default()(function (_ref) {
   var initialState = _ref.initialState;
+  var dev = false;
+  console.log(dev);
   return new apollo_boost__WEBPACK_IMPORTED_MODULE_3__["default"]({
-    uri: "http://localhost:5000/graphql",
+    uri: dev ? "http://localhost:5000/graphql" : "https://my-nyt-articles.herokuapp.com/graphql",
     cache: new apollo_boost__WEBPACK_IMPORTED_MODULE_3__["InMemoryCache"]().restore(initialState || {})
   });
 }, {
@@ -388,13 +390,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
       client: props.apollo,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 15
+        lineNumber: 19
       },
       __self: this
     }, __jsx(Page, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 20
       },
       __self: this
     })));
@@ -2779,7 +2781,7 @@ function previouslyCompared(a, b) {
 /*!*****************************************************!*\
   !*** ./node_modules/apollo-boost/lib/bundle.esm.js ***!
   \*****************************************************/
-/*! exports provided: HttpLink, gql, default, ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument */
+/*! exports provided: ApolloClient, ApolloError, FetchType, NetworkStatus, ObservableQuery, isApolloError, Observable, getOperationName, ApolloLink, concat, createOperation, empty, execute, from, fromError, fromPromise, makePromise, split, toPromise, HeuristicFragmentMatcher, InMemoryCache, IntrospectionFragmentMatcher, ObjectCache, StoreReader, StoreWriter, WriteError, assertIdValue, defaultDataIdFromObject, defaultNormalizedCacheFactory, enhanceErrorWithDocument, HttpLink, gql, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
