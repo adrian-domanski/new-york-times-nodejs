@@ -25,25 +25,25 @@ app.use(
 const PORT = process.env.PORT || 5000;
 
 // // Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
+// if (process.env.NODE_ENV === "production") {
+//   // Set static folder
 
-  app.use(
-    express.static(__dirname + "/client/out", {
-      extensions: ["html"]
-    })
-  );
+//   app.use(
+//     express.static(__dirname + "/client/out", {
+//       extensions: ["html"]
+//     })
+//   );
 
-  app.get("/article/:id", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "client", "out", "article", "[id].html")
-    );
-  });
+//   app.get("/article/:id", (req, res) => {
+//     res.sendFile(
+//       path.resolve(__dirname, "client", "out", "article", "[id].html")
+//     );
+//   });
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "out", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "out", "index.html"));
+//   });
+// }
 
 // mongoose.set("debug", true);
 mongoose.connect(
