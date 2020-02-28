@@ -1,0 +1,20 @@
+{
+  "name": "next-articles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "npm install --prefix server && npm install --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrian-domanski/next-js-articles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrian-domanski/next-js-articles/issues"
+  },
+  "homepage": "https://github.com/adrian-domanski/next-js-articles#readme"
+}
