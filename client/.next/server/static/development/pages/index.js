@@ -197,18 +197,15 @@ const ArticlesRow = ({
   alreadyUsedArticle
 }) => {
   const {
-    0: otherArticles,
-    1: setOtherArticles
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const {
     articleContext: {
       articles
     }
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_articleContext__WEBPACK_IMPORTED_MODULE_1__["ArticleContext"]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    if (articles.length) {
-      let tempArr = [];
 
+  const generateOtherArticles = () => {
+    const tempArr = [];
+
+    if (articles.length) {
       while (tempArr.length < 3) {
         const random = Math.floor(Math.random() * articles.length);
 
@@ -216,29 +213,31 @@ const ArticlesRow = ({
           tempArr.push(articles[random]);
         }
       }
-
-      setOtherArticles(tempArr);
     }
-  }, [articles, alreadyUsedArticle]);
+
+    return tempArr;
+  };
+
+  const otherArticles = generateOtherArticles();
   return __jsx("section", {
     className: "other-articles",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 29
     },
     __self: undefined
   }, __jsx("h1", {
     className: "other-articles__title",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 30
     },
     __self: undefined
   }, rowTitle), __jsx("div", {
     className: "other-articles-grid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 31
     },
     __self: undefined
   }, otherArticles.map(article => __jsx(_articleTile__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -246,7 +245,7 @@ const ArticlesRow = ({
     article: article,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 33
     },
     __self: undefined
   }))));
@@ -627,6 +626,13 @@ __webpack_require__.r(__webpack_exports__);
 var _jsxFileName = "C:\\SandBox\\next-articles\\client\\context\\articleContext.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 const ArticleContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
 
@@ -637,7 +643,7 @@ const ArticleContextProvider = props => {
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(_reducers_articleReducer__WEBPACK_IMPORTED_MODULE_1__["articleReducer"], _reducers_articleReducer__WEBPACK_IMPORTED_MODULE_1__["initState"]);
   return __jsx(ArticleContext.Provider, {
     value: {
-      articleContext,
+      articleContext: _objectSpread({}, articleContext, {}, props.ssrValues),
       dispatch
     },
     __source: {
@@ -2515,12 +2521,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_articlesRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/articlesRow */ "./components/articlesRow.js");
 /* harmony import */ var _images_baner_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/baner.jpg */ "./images/baner.jpg");
 /* harmony import */ var _images_baner_jpg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_baner_jpg__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _context_authContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context/authContext */ "./context/authContext.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _context_articleContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../context/articleContext */ "./context/articleContext.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "C:\\SandBox\\next-articles\\client\\pages\\index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -2529,50 +2531,37 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-
-
 const Index = () => {
-  const {
-    authContext: {
-      isAuth
-    }
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_authContext__WEBPACK_IMPORTED_MODULE_4__["AuthContext"]);
-  const {
-    articleContext: {
-      articles
-    }
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_articleContext__WEBPACK_IMPORTED_MODULE_6__["ArticleContext"]);
   return __jsx(_components_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 9
     },
     __self: undefined
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
+  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 10
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 11
     },
     __self: undefined
   }, "NYT Articles | Home")), __jsx("div", {
     className: "home-page",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 13
     },
     __self: undefined
   }, __jsx("div", {
     className: "home-page-baner",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 14
     },
     __self: undefined
   }, __jsx("img", {
@@ -2580,65 +2569,44 @@ const Index = () => {
     className: "home-page-baner__img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 15
     },
     __self: undefined
   }), __jsx("div", {
     className: "baner-content",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 16
     },
     __self: undefined
   }, __jsx("h1", {
     className: "baner-content__title",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 17
     },
     __self: undefined
   }, "Welcome on the ", __jsx("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 18
     },
     __self: undefined
   }, "New York Times Articles"), " page!"))), __jsx("section", {
     className: "home-page-info container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 22
     },
     __self: undefined
-  }, isAuth ? __jsx(_components_articlesRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_articlesRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rowTitle: "Recent articles",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 23
     },
     __self: undefined
-  }) : __jsx("h1", {
-    className: "home-page-info__title",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: undefined
-  }, "To see all available articles please", " ", __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
-    href: "/login",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: undefined
-  }, __jsx("a", {
-    className: "home-page-info__link",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    },
-    __self: undefined
-  }, "Log In")), "!"))));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);

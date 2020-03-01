@@ -4,6 +4,7 @@ import ArticleTile from "../components/articleTile";
 import Layout from "../components/layout";
 import { AuthContext } from "../context/authContext";
 import { useRouter } from "next/router";
+import { withApollo } from "../lib/withApollo";
 
 const Articles = () => {
   const {

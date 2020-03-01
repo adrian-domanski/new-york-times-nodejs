@@ -1,3 +1,5 @@
+import React from "react";
+
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -12,7 +14,7 @@ class MyDocument extends Document {
         <Head>
           <script
             src="https://kit.fontawesome.com/67491f19fa.js"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
             key="fontawesome"></script>
           <link
             rel="shortcut icon"

@@ -103,17 +103,13 @@ var ArticlesRow = function ArticlesRow(_ref) {
       rowTitle = _ref$rowTitle === void 0 ? "Other articles" : _ref$rowTitle,
       alreadyUsedArticle = _ref.alreadyUsedArticle;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      otherArticles = _useState[0],
-      setOtherArticles = _useState[1];
-
   var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_articleContext__WEBPACK_IMPORTED_MODULE_1__["ArticleContext"]),
       articles = _useContext.articleContext.articles;
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (articles.length) {
-      var tempArr = [];
+  var generateOtherArticles = function generateOtherArticles() {
+    var tempArr = [];
 
+    if (articles.length) {
       while (tempArr.length < 3) {
         var random = Math.floor(Math.random() * articles.length);
 
@@ -121,29 +117,31 @@ var ArticlesRow = function ArticlesRow(_ref) {
           tempArr.push(articles[random]);
         }
       }
-
-      setOtherArticles(tempArr);
     }
-  }, [articles, alreadyUsedArticle]);
+
+    return tempArr;
+  };
+
+  var otherArticles = generateOtherArticles();
   return __jsx("section", {
     className: "other-articles",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 29
     },
     __self: this
   }, __jsx("h1", {
     className: "other-articles__title",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 30
     },
     __self: this
   }, rowTitle), __jsx("div", {
     className: "other-articles-grid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 31
     },
     __self: this
   }, otherArticles.map(function (article) {
@@ -152,7 +150,7 @@ var ArticlesRow = function ArticlesRow(_ref) {
       article: article,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 33
       },
       __self: this
     });
@@ -530,23 +528,48 @@ var Layout = function Layout(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArticleContext", function() { return ArticleContext; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _reducers_articleReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reducers/articleReducer */ "./context/reducers/articleReducer.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _reducers_articleReducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./reducers/articleReducer */ "./context/reducers/articleReducer.js");
+
+
+
+
+
+
+
 var _jsxFileName = "C:\\SandBox\\next-articles\\client\\context\\articleContext.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
 
-var ArticleContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
+
+var ArticleContext = Object(react__WEBPACK_IMPORTED_MODULE_7__["createContext"])();
 
 var ArticleContextProvider = function ArticleContextProvider(props) {
-  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(_reducers_articleReducer__WEBPACK_IMPORTED_MODULE_1__["articleReducer"], _reducers_articleReducer__WEBPACK_IMPORTED_MODULE_1__["initState"]),
+  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_7__["useReducer"])(_reducers_articleReducer__WEBPACK_IMPORTED_MODULE_8__["articleReducer"], _reducers_articleReducer__WEBPACK_IMPORTED_MODULE_8__["initState"]),
       articleContext = _useReducer[0],
       dispatch = _useReducer[1];
 
   return __jsx(ArticleContext.Provider, {
     value: {
-      articleContext: articleContext,
+      articleContext: _objectSpread({}, articleContext, {}, props.ssrValues),
       dispatch: dispatch
     },
     __source: {
@@ -11235,12 +11258,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_articlesRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/articlesRow */ "./components/articlesRow.js");
 /* harmony import */ var _images_baner_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/baner.jpg */ "./images/baner.jpg");
 /* harmony import */ var _images_baner_jpg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_baner_jpg__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _context_authContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context/authContext */ "./context/authContext.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _context_articleContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../context/articleContext */ "./context/articleContext.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "C:\\SandBox\\next-articles\\client\\pages\\index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -11249,46 +11268,37 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-
-
 var Index = function Index() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_authContext__WEBPACK_IMPORTED_MODULE_4__["AuthContext"]),
-      isAuth = _useContext.authContext.isAuth;
-
-  var _useContext2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_articleContext__WEBPACK_IMPORTED_MODULE_6__["ArticleContext"]),
-      articles = _useContext2.articleContext.articles;
-
   return __jsx(_components_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 9
     },
     __self: this
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
+  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 10
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 11
     },
     __self: this
   }, "NYT Articles | Home")), __jsx("div", {
     className: "home-page",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 13
     },
     __self: this
   }, __jsx("div", {
     className: "home-page-baner",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 14
     },
     __self: this
   }, __jsx("img", {
@@ -11296,65 +11306,44 @@ var Index = function Index() {
     className: "home-page-baner__img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 15
     },
     __self: this
   }), __jsx("div", {
     className: "baner-content",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 16
     },
     __self: this
   }, __jsx("h1", {
     className: "baner-content__title",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 17
     },
     __self: this
   }, "Welcome on the ", __jsx("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 18
     },
     __self: this
   }, "New York Times Articles"), " page!"))), __jsx("section", {
     className: "home-page-info container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 22
     },
     __self: this
-  }, isAuth ? __jsx(_components_articlesRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_articlesRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rowTitle: "Recent articles",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 23
     },
     __self: this
-  }) : __jsx("h1", {
-    className: "home-page-info__title",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: this
-  }, "To see all available articles please", " ", __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
-    href: "/login",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: this
-  }, __jsx("a", {
-    className: "home-page-info__link",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    },
-    __self: this
-  }, "Log In")), "!"))));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);

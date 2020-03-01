@@ -76,7 +76,7 @@ const Register = () => {
       authDispatch({ type: "REGISTER_SUCCESS", payload: data.register });
       console.log(data);
     } catch (err) {
-      if (err.graphQLErrors) {
+      if (err.graphQLErrors.length) {
         showAlert(err.graphQLErrors[0].message);
       } else {
         console.log(err);

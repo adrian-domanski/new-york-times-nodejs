@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { ArticleContext } from "../context/articleContext";
 import ArticleTile from "./articleTile";
 
 const ArticlesRow = ({ rowTitle = "Other articles", alreadyUsedArticle }) => {
-  const [otherArticles, setOtherArticles] = useState([]);
   const {
     articleContext: { articles }
   } = useContext(ArticleContext);
-  useEffect(() => {
+
+  const generateOtherArticles = () => {
+    const tempArr = [];
     if (articles.length) {
-      let tempArr = [];
       while (tempArr.length < 3) {
         const random = Math.floor(Math.random() * articles.length);
         if (
@@ -19,9 +19,11 @@ const ArticlesRow = ({ rowTitle = "Other articles", alreadyUsedArticle }) => {
           tempArr.push(articles[random]);
         }
       }
-      setOtherArticles(tempArr);
     }
-  }, [articles, alreadyUsedArticle]);
+    return tempArr;
+  };
+
+  const otherArticles = generateOtherArticles();
 
   return (
     <section className="other-articles">

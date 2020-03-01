@@ -76,7 +76,7 @@ const Login = () => {
       const { data } = await login({ password, email });
       authDispatch({ type: "LOGIN_SUCCESS", payload: data.login });
     } catch (err) {
-      if (err.graphQLErrors) {
+      if (err.graphQLErrors.length) {
         showAlert(err.graphQLErrors[0].message);
       } else {
         console.log(err);

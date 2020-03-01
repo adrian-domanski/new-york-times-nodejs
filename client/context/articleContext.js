@@ -6,7 +6,11 @@ export const ArticleContext = createContext();
 const ArticleContextProvider = props => {
   const [articleContext, dispatch] = useReducer(articleReducer, initState);
   return (
-    <ArticleContext.Provider value={{ articleContext, dispatch }}>
+    <ArticleContext.Provider
+      value={{
+        articleContext: { ...articleContext, ...props.ssrValues },
+        dispatch
+      }}>
       {props.children}
     </ArticleContext.Provider>
   );

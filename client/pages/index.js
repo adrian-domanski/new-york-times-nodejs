@@ -1,20 +1,10 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import Layout from "../components/layout";
 import ArticlesRow from "../components/articlesRow";
 import banerImg from "../images/baner.jpg";
-import { AuthContext } from "../context/authContext";
-import Link from "next/link";
-import { ArticleContext } from "../context/articleContext";
 import Head from "next/head";
 
 const Index = () => {
-  const {
-    authContext: { isAuth }
-  } = useContext(AuthContext);
-  const {
-    articleContext: { articles }
-  } = useContext(ArticleContext);
-
   return (
     <Layout>
       <Head>
@@ -30,17 +20,7 @@ const Index = () => {
           </div>
         </div>
         <section className="home-page-info container">
-          {isAuth ? (
-            <ArticlesRow rowTitle="Recent articles" />
-          ) : (
-            <h1 className="home-page-info__title">
-              To see all available articles please{" "}
-              <Link href="/login">
-                <a className="home-page-info__link">Log In</a>
-              </Link>
-              !
-            </h1>
-          )}
+          <ArticlesRow rowTitle="Recent articles" />
         </section>
       </div>
     </Layout>
