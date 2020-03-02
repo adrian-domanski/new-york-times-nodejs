@@ -1,11 +1,17 @@
 export const initState = {
   isAuth: false,
   user: null,
-  token: null
+  token: null,
+  isLoading: false
 };
 
 export const authReducer = (state, action) => {
   switch (action.type) {
+    case "SET_LOADING":
+      return {
+        ...state,
+        isLoading: true
+      };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       localStorage.setItem("token", action.payload.token);
@@ -13,14 +19,16 @@ export const authReducer = (state, action) => {
         ...state,
         isAuth: true,
         user: action.payload.user,
-        token: action.payload.token
+        token: action.payload.token,
+        isLoading: false
       };
     case "AUTH_SUCCESS":
       return {
         ...state,
         isAuth: true,
         user: { ...action.payload },
-        token: localStorage.getItem("token")
+        token: localStorage.getItem("token"),
+        isLoading: false
       };
     case "LOGOUT_SUCCESS":
     case "REGISTER_ERROR":
@@ -31,7 +39,8 @@ export const authReducer = (state, action) => {
         ...state,
         isAuth: false,
         user: null,
-        token: null
+        token: null,
+        isLoading: false
       };
     default:
       return state;

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState("john@gmail.com");
-  const [password, setPassword] = useState("john123");
+  const [password, setPassword] = useState("123456");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [alert, setAlert] = useState("");

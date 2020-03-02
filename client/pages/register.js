@@ -26,7 +26,9 @@ const Register = () => {
   }, [isAuth]);
 
   // Clear timeout after unmount
-  useEffect(() => clearTimeout(alertTimeOut));
+  useEffect(() => {
+    return () => clearTimeout(alertTimeOut);
+  });
 
   const handleValidateEmail = email => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -76,6 +78,7 @@ const Register = () => {
       authDispatch({ type: "REGISTER_SUCCESS", payload: data.register });
       console.log(data);
     } catch (err) {
+      authDispatch({ type: "REGISTER_ERROR" });
       if (err.graphQLErrors.length) {
         showAlert(err.graphQLErrors[0].message);
       } else {

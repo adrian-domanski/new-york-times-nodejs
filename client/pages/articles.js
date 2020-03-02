@@ -4,7 +4,6 @@ import ArticleTile from "../components/articleTile";
 import Layout from "../components/layout";
 import { AuthContext } from "../context/authContext";
 import { useRouter } from "next/router";
-import { withApollo } from "../lib/withApollo";
 
 const Articles = () => {
   const {
@@ -13,23 +12,23 @@ const Articles = () => {
   const {
     authContext: { isAuth }
   } = useContext(AuthContext);
+
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuth) {
-      router.push("/login");
-    }
+    if (!isAuth) router.push("/login");
   }, [isAuth]);
 
-  const articlesList = articles.length ? (
-    <div className="articles-grid">
-      {articles.map(article => (
-        <ArticleTile key={article.id} article={article} />
-      ))}
-    </div>
-  ) : (
-    <div className="loader">Loading...</div>
-  );
+  const articlesList =
+    articles.length && isAuth ? (
+      <div className="articles-grid">
+        {articles.map(article => (
+          <ArticleTile key={article.id} article={article} />
+        ))}
+      </div>
+    ) : (
+      <div className="loader">Loading...</div>
+    );
   return (
     <Layout>
       <div className="articles-page container">{articlesList}</div>

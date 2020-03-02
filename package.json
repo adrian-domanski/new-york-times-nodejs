@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
-    "start": "node server.js && npm start --prefix client",
+    "start": "concurrently \"node server.js\" \"npm run start --prefix client\"",
     "dev": "concurrently \"npm run server\" \"npm run client --prefix client\"",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm run export --prefix client"
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
@@ -22,7 +23,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2"
   },
-  "devDependencies": {
-    "concurrently": "^5.1.0"
-  }
+  "devDependencies": {}
 }
