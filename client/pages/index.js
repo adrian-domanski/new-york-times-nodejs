@@ -3,8 +3,9 @@ import Layout from "../components/layout";
 import ArticlesRow from "../components/articlesRow";
 import banerImg from "../images/baner.jpg";
 import Head from "next/head";
+import cookies from "next-cookies";
 
-const Index = () => {
+const Index = props => {
   return (
     <Layout>
       <Head>

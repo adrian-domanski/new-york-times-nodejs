@@ -14,7 +14,11 @@ export const authReducer = (state, action) => {
       };
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
-      localStorage.setItem("token", action.payload.token);
+      const now = new Date();
+      now.setHours(now.getHours() + 1);
+      document.cookie = `token=${
+        action.payload.token
+      }; path=/; expires=${now.toUTCString()}`;
       return {
         ...state,
         isAuth: true,
@@ -34,7 +38,7 @@ export const authReducer = (state, action) => {
     case "REGISTER_ERROR":
     case "LOGIN_ERROR":
     case "AUTH_ERROR":
-      localStorage.removeItem("token");
+      document.cookie = `token=""; path=/; expires=${new Date().toUTCString()}`;
       return {
         ...state,
         isAuth: false,

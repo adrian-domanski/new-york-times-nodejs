@@ -5,30 +5,27 @@ import ArticleContextProvider from "./articleContext";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "./authContext";
 
-function ContextWrapper({ children }) {
+function ContextWrapper({ children, cookie }) {
   const { dispatch: authDispatch } = useContext(AuthContext);
   const { data: articleData, loading: articleLoading } = useQuery(
     getArticlesQuery
   );
 
-  const { refetch: authUser } = useQuery(authUserQuery, { skip: true });
+  const { data: authData, loading: authLoading } = useQuery(authUserQuery, {
+    variables: { token: cookie.toString() }
+  });
+
+  console.log(authData);
 
   useEffect(() => {
-    const fetchAuth = async () => {
-      try {
-        authDispatch({ type: "SET_LOADING" });
-        const token = localStorage.getItem("token");
-        if (!token) throw Error("No token provided - auth fail");
-        const { data } = await authUser({ token });
-        authDispatch({ type: "AUTH_SUCCESS", payload: data.authUser });
-      } catch (err) {
+    if (!authLoading) {
+      if (authData && authData.authUser) {
+        authDispatch({ type: "AUTH_SUCCESS", payload: authData.authUser });
+      } else {
         authDispatch({ type: "AUTH_ERROR" });
-        console.log(err.message);
       }
-    };
-
-    fetchAuth();
-  }, []);
+    }
+  }, [authLoading]);
 
   const articles = !articleLoading ? articleData.articles : [];
 
