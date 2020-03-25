@@ -10,7 +10,7 @@ const ArticlesRow = ({ rowTitle = "Other articles", alreadyUsedArticle }) => {
 
   useEffect(() => {
     let tempArr = [];
-    for (let i = 0; i < 3; i++) {
+    while (tempArr.length < 3) {
       const random = Math.floor(Math.random() * articles.length);
       if (
         !tempArr.includes(articles[random]) &&
