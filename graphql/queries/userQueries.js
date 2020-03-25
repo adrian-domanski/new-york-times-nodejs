@@ -48,14 +48,19 @@ const login = {
 
 // Auth user - return user based on token
 const authUser = {
-  type: UserType,
+  type: LoginType,
   args: {
     token: { type: GraphQLString }
   },
   resolve: async (parent, args, ctx) => {
     try {
-      const { userId } = await jwt.decode(args.token, "jwtSecret");
-      return await User.findById(userId).select("-password");
+      const decoded = await jwt.decode(args.token, "jwtSecret");
+      if (decoded && decoded.userId) {
+        return {
+          userId: decoded.userId,
+          token: args.token
+        };
+      }
     } catch (err) {
       throw err;
     }

@@ -15,7 +15,7 @@ export const authReducer = (state, action) => {
     case "REGISTER_SUCCESS":
     case "LOGIN_SUCCESS":
       const now = new Date();
-      now.setHours(now.getHours() + 1);
+      now.setFullYear(now.getFullYear() + 100);
       document.cookie = `token=${
         action.payload.token
       }; path=/; expires=${now.toUTCString()}`;

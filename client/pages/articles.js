@@ -9,6 +9,7 @@ const Articles = () => {
   const {
     articleContext: { articles }
   } = useContext(ArticleContext);
+
   const {
     authContext: { isAuth }
   } = useContext(AuthContext);
@@ -19,16 +20,14 @@ const Articles = () => {
     if (!isAuth) router.push("/login");
   }, [isAuth]);
 
-  const articlesList =
-    articles.length && isAuth ? (
-      <div className="articles-grid">
-        {articles.map(article => (
-          <ArticleTile key={article.id} article={article} />
-        ))}
-      </div>
-    ) : (
-      <div className="loader">Loading...</div>
-    );
+  const articlesList = (
+    <div className="articles-grid">
+      {articles.map(article => (
+        <ArticleTile key={article.id} article={article} />
+      ))}
+    </div>
+  );
+
   return (
     <Layout>
       <div className="articles-page container">{articlesList}</div>

@@ -2,37 +2,36 @@ import { useQuery } from "@apollo/react-hooks";
 import { getArticlesQuery } from "../queries/articleQueries";
 import { authUserQuery } from "../queries/authQueries";
 import ArticleContextProvider from "./articleContext";
-import { useEffect, useContext } from "react";
-import { AuthContext } from "./authContext";
+import AuthContextProvider from "./authContext";
+import InitialContextUse from "./InitialContextUse";
 
 function ContextWrapper({ children, cookie }) {
-  const { dispatch: authDispatch } = useContext(AuthContext);
   const { data: articleData, loading: articleLoading } = useQuery(
     getArticlesQuery
   );
 
-  const { data: authData, loading: authLoading } = useQuery(authUserQuery, {
-    variables: { token: cookie.toString() }
+  const { data: authData, loading: authLoading, error: authError } = useQuery(authUserQuery, {
+    skip: !cookie.toString(),
+    variables: { token: cookie.toString() || "" }
   });
 
-  console.log(authData);
+  let authSsrData = {};
 
-  useEffect(() => {
-    if (!authLoading) {
-      if (authData && authData.authUser) {
-        authDispatch({ type: "AUTH_SUCCESS", payload: authData.authUser });
-      } else {
-        authDispatch({ type: "AUTH_ERROR" });
-      }
-    }
-  }, [authLoading]);
-
+  if (!authLoading && !authError && authData && authData.authUser) {
+    authSsrData = {
+      token: authData.authUser.token || null,
+      user: { email: authData.authUser.user.email },
+      isAuth: true
+    };
+  }
   const articles = !articleLoading ? articleData.articles : [];
 
   return (
-    <ArticleContextProvider ssrValues={{ articles }}>
-      {children}
-    </ArticleContextProvider>
+    <AuthContextProvider ssrValues={authSsrData}>
+      <ArticleContextProvider ssrValues={{ articles }}>
+        <InitialContextUse>{children}</InitialContextUse>
+      </ArticleContextProvider>
+    </AuthContextProvider>
   );
 }
 

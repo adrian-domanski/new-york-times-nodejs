@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Layout from "../components/layout";
 import ArticlesRow from "../components/articlesRow";
 import banerImg from "../images/baner.jpg";
 import Head from "next/head";
-import cookies from "next-cookies";
+import { AuthContext } from "../context/authContext";
 
-const Index = props => {
+const Index = () => {
   return (
     <Layout>
       <Head>

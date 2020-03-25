@@ -15,6 +15,19 @@ const ArticleType = new GraphQLObjectType({
   })
 });
 
+// Search article type
+const SearchArticleType = new GraphQLObjectType({
+  name: "SearchArticleType",
+  fields: () => ({
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    description: { type: GraphQLString },
+    publishedDate: { type: GraphQLString },
+    url: { type: GraphQLString },
+    byLine: { type: GraphQLString }
+  })
+});
+
 // User type
 const UserType = new GraphQLObjectType({
   name: "UserType",
@@ -46,5 +59,6 @@ const LoginType = new GraphQLObjectType({
 module.exports = {
   ArticleType,
   UserType,
-  LoginType
+  LoginType,
+  SearchArticleType
 };

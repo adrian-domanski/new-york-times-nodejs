@@ -1,7 +1,6 @@
 import React from "react";
 import App from "next/app";
 import withApollo from "../lib/withApollo";
-import AuthContextProvider from "../context/authContext";
 import { getDataFromTree } from "@apollo/react-ssr";
 import ContextWrapper from "../context/contextWrapper";
 import cookies from "next-cookies";
@@ -17,11 +16,9 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <AuthContextProvider>
-        <ContextWrapper cookie={this.props.cookie}>
-          <Component {...pageProps} />
-        </ContextWrapper>
-      </AuthContextProvider>
+      <ContextWrapper cookie={this.props.cookie}>
+        <Component {...pageProps} />
+      </ContextWrapper>
     );
   }
 }

@@ -8,14 +8,22 @@
   gap: 2rem;
 }
 
+.articles-grid--list {
+  grid-template-columns: 1fr !important;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .article-tile {
   cursor: pointer;
   display: grid;
   grid-template-rows: max-content max-content;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
 
   &:hover {
     transform: scale(1.01);
+    color: rgb(0, 71, 99);
   }
 
   @media screen and (max-width: 1200px) {

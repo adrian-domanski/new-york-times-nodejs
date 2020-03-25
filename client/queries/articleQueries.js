@@ -12,3 +12,16 @@ export const getArticlesQuery = gql`
     }
   }
 `;
+
+export const getArticlesByPhraseQuery = gql`
+  query($page: Int!, $phrase: String!) {
+    searchArticles(page: $page, phrase: $phrase) {
+      id
+      title
+      description
+      publishedDate
+      url
+      byLine
+    }
+  }
+`;

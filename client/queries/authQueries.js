@@ -15,9 +15,11 @@ export const loginQuery = gql`
 export const authUserQuery = gql`
   query($token: String!) {
     authUser(token: $token) {
-      email
-      password
-      id
+      user {
+        id
+        email
+      }
+      token
     }
   }
 `;

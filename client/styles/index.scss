@@ -9,6 +9,7 @@
 @import "./home";
 @import "./login";
 @import "./articles";
+@import "./search";
 
 * {
   margin: 0;
@@ -23,10 +24,12 @@ html {
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 body {
   font-family: $font;
+  max-width: 100%;
 }
 
 .l-page-grid {

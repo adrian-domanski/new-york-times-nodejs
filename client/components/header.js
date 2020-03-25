@@ -16,6 +16,7 @@ const Header = () => {
   const handleLogout = e => {
     e.preventDefault();
     authDispatch({ type: "LOGOUT_SUCCESS" });
+    router.push("/");
   };
 
   useEffect(() => {
@@ -58,14 +59,11 @@ const Header = () => {
           <button
             className="nav-toggler js-toggle-off"
             onClick={() => setIsMobile(!isMobile)}>
-            <i className="fas fa-bars js-toggle-off"></i>
+            <i className="fas fa-bars js-toggle-off" aria-hidden={true}></i>
           </button>
           <ul className="nav-list" ref={navListEl}>
             <li className="nav-list__item">
-              <Link
-                href="/"
-                // activeClassName="active-link"
-              >
+              <Link href="/">
                 <a
                   className={`nav-list__item-link ${
                     router.pathname === "/" ? "active-link" : ""
@@ -77,10 +75,17 @@ const Header = () => {
             {isAuth ? (
               <>
                 <li className="nav-list__item">
-                  <Link
-                    href="/articles"
-                    // activeClassName="active-link"
-                  >
+                  <Link href="/search">
+                    <a
+                      className={`nav-list__item-link ${
+                        router.pathname === "/search" ? "active-link" : ""
+                      }`}>
+                      Search
+                    </a>
+                  </Link>
+                </li>
+                <li className="nav-list__item">
+                  <Link href="/articles">
                     <a
                       className={`nav-list__item-link ${
                         router.pathname === "/articles" ? "active-link" : ""
@@ -101,10 +106,7 @@ const Header = () => {
             ) : (
               <>
                 <li className="nav-list__item">
-                  <Link
-                    href="/login"
-                    // activeClassName="active-link"
-                  >
+                  <Link href="/login">
                     <a
                       className={`nav-list__item-link ${
                         router.pathname === "/login" ? "active-link" : ""
@@ -114,10 +116,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-list__item">
-                  <Link
-                    href="/register"
-                    // activeClassName="active-link"
-                  >
+                  <Link href="/register">
                     <a
                       className={`nav-list__item-link ${
                         router.pathname === "/register" ? "active-link" : ""

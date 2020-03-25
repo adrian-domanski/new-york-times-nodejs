@@ -3,11 +3,12 @@ import { initState, authReducer } from "./reducers/authReducer";
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = props => {
   const [authContext, dispatch] = useReducer(authReducer, initState);
   return (
-    <AuthContext.Provider value={{ authContext, dispatch }}>
-      {children}
+    <AuthContext.Provider
+      value={{ authContext: { ...authContext, ...props.ssrValues }, dispatch }}>
+      {props.children}
     </AuthContext.Provider>
   );
 };
