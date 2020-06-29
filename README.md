@@ -1,5 +1,5 @@
 # next-js-articles
-NYT Articles page with auth using Next.js
+New York Times Articles (API) page with auth using Next.js
 
 ## Live demo
 
